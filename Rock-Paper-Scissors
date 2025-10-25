@@ -55,7 +55,7 @@ while True:
     another_choice = input("Would you like to play again? (Y/N)").lower()
     if another_choice == "y":
         print("Let's go!")
-        break
+        game()
     elif another_choice == "n":
         print("Adios")
         quit()
