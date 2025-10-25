@@ -1,0 +1,64 @@
+import random
+
+print("Welcome to Rock/Paper/Scissors!\n")
+
+while True:
+    play_choice = input("Do you want to play? Press Y/N: ").lower().strip()
+    if play_choice == "y":
+        print("Let's go!")
+        break
+    elif play_choice == "n":
+        print("Adios")
+        quit()
+    else:
+        print("Again please: ")
+        
+
+def game():
+    player_points = 0
+    pc_points = 0
+    game_choices = ("rock", "paper", "scissors")
+    while True:
+        number_of_times = input("\nHow many times would you like to play? ")
+        for _ in range(int((number_of_times))):
+            pc_choice = random.choice(game_choices)
+            while True:
+                player_choice = input("\nChoose either Rock/Paper/Scissors: ").lower().strip()
+                if player_choice in game_choices:
+                    break  # valid input → exit this inner loop
+                print("Say that again!")
+
+            if player_choice == pc_choice:
+                print("It's a draw!")
+
+            elif (
+                (pc_choice == "rock" and player_choice == "scissors") or
+                (pc_choice == "paper" and player_choice == "rock") or
+                (pc_choice == "scissors" and player_choice == "paper")
+            ):
+                print(f"Computer chose {pc_choice}. You lost!")
+                pc_points+=1
+
+            else:
+                print(f"Computer chose {pc_choice}. You won!")
+                player_points += 1
+        
+        print("\nThe game is over!\n"
+                "Here are the results:\n"
+                f"Computer scored {pc_points} point/s\n"
+                f"You scored {player_points} points/s")
+        break
+game()
+
+
+while True:
+    another_choice = input("Would you like to play again? (Y/N)").lower()
+    if another_choice == "y":
+        print("Let's go!")
+        break
+    elif another_choice == "n":
+        print("Adios")
+        quit()
+    else:
+        print("Again please: ")
+        
