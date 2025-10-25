@@ -1,0 +1,61 @@
+import random
+
+print("\nWelcome to NumberGuessr!")
+
+while True:
+    play_choice = input("\nWould you like to play the game? (Y/N): ").lower().strip()
+    if play_choice == "y":
+        print("Let's Go!")
+        break
+    elif play_choice == "n":
+        print("Adios!")
+        quit()
+    else:
+        print("Repeat your option.")
+
+def game():
+    times_guessed = 0
+
+    while True:
+        games = input("\nHow many numbers do you want to guess? ")
+        if games.isdigit() and int(games) > 0:
+            games = int(games)
+            break
+        print("Please enter a valid positive number.")
+
+    for _ in range(games):
+        numbers = random.randint(-10, 15)
+        while True:
+            try:
+                guess = int(input("Make your guess: "))
+            except ValueError:
+                print("Please enter an integer.")
+                continue  # asks again without counting as a guess
+
+            if guess < numbers:
+                print("Your guess is too small. Try again!")
+                times_guessed+=1
+            elif guess > numbers:
+                print("Your guess is too large. Try again!")
+                times_guessed+=1
+            else:
+                print("You fokin di' it, mate!")
+                times_guessed+=1
+                break
+    print(
+        "Game is over. TY for playing!\n"
+        f"It took you {times_guessed} times to guess all the numbers correctly."
+        )
+game()
+
+while True:
+    repeat_choice = input("Would you like to play again? (Y/N): ").lower()
+    if repeat_choice == "y":
+        print("Let's go!")
+        game()
+    elif repeat_choice == "n":
+        print("Adios")
+        quit()
+    else:
+        print("Again please: ")
+        
